@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <title>Virtual Queue</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="startCountdown()">
+<div>
+  <!--navagation bar-->
+  <div class="header-bar">
+    <div class="tamu-logo">
+      <img src="https://media.discordapp.net/attachments/1150107522309570580/1150213628973285386/51.png?width=1440&height=436" width="350" height="100">
+    </div>
+  
+    <div class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="virtual_queue.html">Queue</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="https://12thman.com/sports/football/schedule/2023" target="_blank" rel="noopener noreferrer">Football Games</a></li>
+        </ul>
+    </div>
+  </div>  
+  <!--content-->
+  <div class="content">
+    <div>
+      <h1 id="gameinfo_title">Game Information</h1>
+      <p id="senior">SENIORS PULL NOW!</p>
+      <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div id="gameinfo_div" style="display: flex";>
+          <p style="margin-left: 60px" class="game_info"><span style="font-weight: 690; color: maroon">Date:</span> Nov. 9th, 2024  <br> <br> <span style="font-weight: 690; color: maroon">Time:</span> 6:30pm <br> <br> <span style="font-weight: 690; color: maroon">Location:</span> Kyle Field</p>
+        </div>
+        <div style="display: flex">
+          <img id="game_img" src="https://media.discordapp.net/attachments/1150107522309570580/1150268075472605204/Screenshot_2023-09-09_221430.png?width=1440&height=451">
+        </div>
+      </div>
+    </div>
+  
+    <!--button + img-->
+      <div id="button_img" style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div>
+          <img id="man_logo" src="https://media.discordapp.net/attachments/1150107522309570580/1150269743387918446/Screenshot_2023-09-09_222035.png?width=738&height=733">
+        </div>
+        <div>
+          <button style="margin-top: -440px;" id="button", onclick="enterQueue()", >Join Virtual Queue</button>
+          <p id="yourqueue">Your queue number:</p>
+          <p id="scroll">Scroll Down For Arrival Time</p>
+          <p id="queueNumber"></p> <br> <br>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p id="queue_bottom"></p>
+    </div>
+    <!--countdown-->
+    <div style="display: flex; justify-content: space-evenly; font-size: 25px; margin-top: -60px; padding-top: 0px">
+      <div>
+        <p><span class="classes">Junior:</span> Tuesdays-8am</p>
+        <p id="countdown1">Pull Time</p>
+      </div>
+      <div>
+        <p><span class="classes">Sophmore:</span> Wednesdays-8am</p>
+        <p id="countdown2">Pull Time</p>
+      </div>
+      <div>
+        <p><span class="classes">Freshman:</span> Thursdays-8am</p>
+        <p id="countdown3">Pull Time</p>
+      </div>
+    </div>
+    <div>
+      <p> <br> <br> </p>
+    </div>
+  </div>
+  <script>
+    let currentTime = new Date();
+    let juniorTime = new Date('September 12, 2023 08:00:00');
+    let sophmoreTime = new Date('September 13, 2023 08:00:00');
+    let freshmanTime = new Date('September 14, 2023 08:00:00');
+
+    function getRandomNumber() {
+      // Generate a random number between 1 and 1000
+      const min = 1;
+      const max = 9;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Function to handle the button click event
+  
+    function enterQueue() {
+      const randomNumber = getRandomNumber();
+      document.getElementById("queueNumber").textContent = randomNumber;
+    }
+
+    // Attach the click event listener to the button
+    const enterQueueButton = document.getElementById("Button");
+    enterQueueButton.addEventListener("click", enterQueue);
+
+    
+    function flipflop()
+    {
+      currentTime = new Date();
+
+      let timeRemainingMs = juniorTime - currentTime;
+      let timeRemainingSeconds = Math.floor(timeRemainingMs / 1000);
+      let timeRemainingMinutes = Math.floor(timeRemainingSeconds / 60)
+      let timeRemainingHours = Math.floor(timeRemainingMinutes / 60)
+      document.getElementById("countdown1").innerText = timeRemainingHours + ":" + timeRemainingMinutes % 60 + ":" + timeRemainingSeconds % 60 + "";
+
+    }
+    
+    function SophmoreTime(){
+      currentTime = new Date();
+      let timeRemainingMs = sophmoreTime - currentTime;
+      let timeRemainingSeconds = Math.floor(timeRemainingMs / 1000);
+      let timeRemainingMinutes = Math.floor(timeRemainingSeconds / 60)
+      let timeRemainingHours = Math.floor(timeRemainingMinutes / 60)
+      document.getElementById("countdown2").innerText = timeRemainingHours + ":" + timeRemainingMinutes % 60 + ":" + timeRemainingSeconds % 60 + "";
+
+    }
+
+    function FreshmanTime(){
+      currentTime = new Date();
+      let timeRemainingMs = freshmanTime - currentTime;
+      let timeRemainingSeconds = Math.floor(timeRemainingMs / 1000);
+      let timeRemainingMinutes = Math.floor(timeRemainingSeconds / 60)
+      let timeRemainingHours = Math.floor(timeRemainingMinutes / 60)
+      document.getElementById("countdown3").innerText = timeRemainingHours + ":" + timeRemainingMinutes % 60 + ":" + timeRemainingSeconds % 60 + "";
+
+    }
+
+    function startCountdown ()
+    {
+      setInterval(flipflop, 1000);
+      setInterval(SophmoreTime, 1000);
+      setInterval(FreshmanTime, 1000);
+    }
+    
+  </script>
+
+</div>
+<div style="display: flex; flex-direction: row; justify-content: space-between; margin-left: 200px; margin-right: 200px; margin-bottom: 50px; margin-top: -80px; text-align: center;">
+  <div>
+  <h2 class="question" id="q1">GROUP 1</h2>
+  <p class="answer">8:00 AM NORTH WING</p>
+  <h2 class="question" id="q2">GROUP 2</h2>
+  <p class="answer">9:00 AM NORTH WING</p>
+  <h2 class="question" id="q3">GROUP 3</h2>
+  <p class="answer">10:00 AM NORTH WING</p>
+</div>
+<div>
+  <h2 class="question" id="q4">GROUP 4</h2>
+  <p class="answer">11:00 AM NORTH WING</p>
+  <h2 class="question" id="q5">GROUP 5</h2>
+  <p class="answer">12:00 PM NORTH WING</p>
+  <h2 class="question" id="q6">GROUP 6</h2>
+  <p class="answer">1:00 PM NORTH WING</p>
+</div>
+<div>
+  <h2 class="question" id="q7">GROUP 7</h2>
+  <p class="answer">2:00 PM NORTH WING</p>
+  <h2 class="question" id="q8">GROUP 8</h2>
+  <p class="answer">3:00 PM NORTH WING</p>
+  <h2 class="question" id="q9">GROUP 9</h2>
+  <p class="answer">4:00 PM NORTH WING</p>
+  <br> <br>
+</div>
+</div>
+  </body>
+
+</html>
